@@ -3,6 +3,7 @@
 
 #include "filecontroller.h"
 
+#include <QImage>
 #include <QTcpSocket>
 
 
@@ -13,7 +14,13 @@ public:
     ServerFileController();
     ~ServerFileController();
 
-    void receivePictures(QTcpSocket *tcpSocket);
+    void receivePictures();
+
+    quint32 blockSize;
+    QImage image;
+    int pictureNumber;
+    QString filename;
+    QTcpSocket *tcpSocket;
 };
 
 #endif // SERVERFILECONTROLLER_H

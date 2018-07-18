@@ -8,7 +8,7 @@ QMAKE_CXXFLAGS+=-std=c++11
 
 CONFIG += c++11
 
-QT       += core gui
+QT       += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = PlateR
@@ -46,7 +46,8 @@ SOURCES += main.cpp\
     controller/filecontroller.cpp \
     controller/serverfilecontroller.cpp \
     clientwidget.cpp \
-    serverwidget.cpp
+    serverwidget.cpp \
+    controller/utility.cpp
 
 HEADERS  += dialog.h \
     include/easypr/core/character.hpp \
@@ -90,7 +91,8 @@ HEADERS  += dialog.h \
     controller/filecontroller.h \
     controller/serverfilecontroller.h \
     clientwidget.h \
-    serverwidget.h
+    serverwidget.h \
+    controller/utility.h
 
 FORMS    += dialog.ui \
     clientwidget.ui \

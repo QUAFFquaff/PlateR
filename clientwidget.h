@@ -5,7 +5,8 @@
 #include <QTcpSocket>
 #include <QFile>
 #include <qtimer.h>
-
+#include <controller/clientfilecontroller.h>
+using namespace std;//std::vector
 namespace Ui {
 class ClientWidget;
 }
@@ -27,6 +28,10 @@ private slots:
 
     void on_sendFileButton_clicked();
 
+    void on_selectFolder_clicked();
+
+    void on_sendPictures_clicked();
+
 private:
     Ui::ClientWidget *ui;
 
@@ -43,6 +48,10 @@ private:
 
 
     QTimer timer; //定时器
+    QStringList pictureString_list;
+    vector<QPixmap> picturelist;
+
+    ClientFileController *cfc;
 
     void uiInit();
     void setsocketListener();

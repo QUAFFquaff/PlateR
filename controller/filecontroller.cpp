@@ -14,7 +14,7 @@ FileController::~FileController()
 
 QString FileController::showDirectory()
 {
-    QFileDialog fileDialog=new QFileDialog();
+    QFileDialog *fileDialog;
     QString dir=fileDialog->getExistingDirectory(NULL,"Open Directory",
                   "D:\\image",QFileDialog::ShowDirsOnly);
     if(fileDialog)

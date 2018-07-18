@@ -1,13 +1,17 @@
 #include "serverfilecontroller.h"
 
+#include <QBuffer>
+#include <QImageReader>
+
 ServerFileController::ServerFileController()
 {
+    this->blockSize = 0;
+    pictureNumber = 0;
 
 }
 
 ServerFileController::~ServerFileController()
 {
-
 }
 /**
  * @brief ServerFileController::receivePictures
@@ -15,8 +19,9 @@ ServerFileController::~ServerFileController()
  * input stream
  * output: save stream into file
  */
-void ServerFileController::receivePictures(QTcpSocket *tcpSocket)
+void ServerFileController::receivePictures()
 {
+    qDebug()<<"in";
     while(tcpSocket->bytesAvailable()>0)
     {
         QDataStream in(tcpSocket);
@@ -45,15 +50,15 @@ void ServerFileController::receivePictures(QTcpSocket *tcpSocket)
         {
 //  QDateTime time=QDateTime::currentDateTime();
 //  QString str=time.toString("yyyy-MM-dd hh:mm:ss ddd");
-            QString filename = ui->picturesPathLineEdit->text()+"/"+QString("%1.").arg(pictureNumber)+style;
-            image.save(filename);
-            pix.load(filename);
-            pictureList.push_back(pix);
+//            QString filename = ui->picturesPathLineEdit->text()+"/"+QString("%1.").arg(pictureNumber)+style;
+            image.save(this->filename);
+//            pix.load(filename);
+//            pictureList.push_back(pix);
             pictureNumber++;
             blockSize=0;
         }
-        pictureList[0]= pictureList[0].scaled(ui->showPictureLabel->size());
-        ui->showPictureLabel->setPixmap(pictureList[0]);
+//        pictureList[0]= pictureList[0].scaled(ui->showPictureLabel->size());
+//        ui->showPictureLabel->setPixmap(pictureList[0]);
     }
 
     if(tcpSocket==NULL)
